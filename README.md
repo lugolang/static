@@ -15,7 +15,7 @@ import (
 
 func main() {
 	app := lu.New()
-	Static := static.New("/src/octopus-open/dist")
+	Static := static.New("/src/octopus-open/dist", "index.html")
 	app.Get("/static", Static)
 	server := &fasthttp.Server{
 		Handler:       app.Handler,
