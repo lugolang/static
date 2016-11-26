@@ -1,5 +1,5 @@
 # static
-lu static file serving middleware, based on fasthttp.FS.
+[lu](https://github.com/vincentLiuxiang/lu) static file serving middleware, based on fasthttp.FS.
 
 ## example
 ```go
