@@ -35,8 +35,11 @@ func New(fs *FS) func(ctx *fasthttp.RequestCtx, next func(error)) {
 				next(nil)
 				return
 			}
-			// method not allowed
-			next(errors.New("405"))
+			next(errors.New("405 Method Not Allowed"))
+			// // method not allowed
+			// ctx.SetStatusCode(405)
+			// ctx.Response.Header.Set("Allow", "GET,HEAD")
+			// ctx.Response.Header.Set("Content-Length", "0")
 			return
 		}
 
@@ -57,7 +60,6 @@ func New(fs *FS) func(ctx *fasthttp.RequestCtx, next func(error)) {
 		}
 
 		errPath := filterPath(fs.Root+string(ctx.Path())+"/", fs.IndexNames, next)
-
 		if errPath != nil {
 			if fs.FallThrough {
 				next(nil)
