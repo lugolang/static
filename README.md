@@ -17,7 +17,7 @@ func main() {
 	app := lu.New()
 	fs := static.DefaultFS
 	Static := static.New(*fs)
-	app.Use("/", Static)
+	app.Use("/static", Static)
 	server := &fasthttp.Server{
 		Handler:       app.Handler,
 		Concurrency:   1024 * 1024,
