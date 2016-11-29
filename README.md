@@ -10,13 +10,14 @@ import (
 	
 	"github.com/valyala/fasthttp"
 	"github.com/vincentLiuxiang/lu"
-    "github.com/lugolang/static"
+  "github.com/lugolang/static"
 )
 
 func main() {
 	app := lu.New()
-	Static := static.New("/src/octopus-open/dist", "index.html")
-	app.Get("/static", Static)
+	fs := static.DefaultFS
+	Static := static.New(*fs)
+	app.Use("/", Static)
 	server := &fasthttp.Server{
 		Handler:       app.Handler,
 		Concurrency:   1024 * 1024,
