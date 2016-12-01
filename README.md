@@ -1,5 +1,5 @@
 # static
-[![Build Status](https://travis-ci.org/lugolang/static.svg?branch=master)](https://travis-ci.org/lugolang/static)
+[![Build Status](https://travis-ci.org/lugolang/static.svg?branch=master)](https://travis-ci.org/lugolang/static) [![Coverage Status](https://coveralls.io/repos/github/lugolang/static/badge.svg?branch=master)](https://coveralls.io/github/lugolang/static?branch=master)
 
 [lu](https://github.com/vincentLiuxiang/lu) static file serving middleware, based on fasthttp.FS.
 
