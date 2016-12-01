@@ -1,0 +1,11 @@
+language: go
+
+go:
+  - 1.6
+  - 1.7
+
+script:
+
+  # run tests 
+  - go get github.com/mattn/goveralls
+  - $HOME/gopath/bin/goveralls -service=travis-ci
