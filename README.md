@@ -18,7 +18,8 @@ import (
 func main() {
 	app := lu.New()
 	fs := static.DefaultFS
-	Static := static.New(*fs)
+	// fs.Root = "/static/file/path/"
+	Static := static.New(fs)
 	app.Get("/static", Static)
 	server := &fasthttp.Server{
 		Handler:       app.Handler,
@@ -32,3 +33,16 @@ func main() {
 }
 
 ```
+
+the config of fs is totally same with fasthttp.FS
+
+## fs.Root string
+
+* The default value of fs.Root is ".", it means you should put your static file (html/css/js etc.) to the directory where your go program starts. 
+
+* However you can custom it in your way.
+
+## fs.IndexNames []string
+* The default value is []string{"index.html"}
+* It specify the index file. For example, when you access to http://xxxxxx:xxx/home/ , static will search the directory ```fs.Root + /home/``` to find the files in fs.IndexNames , and response to the client when find one.
+* if no file is found , static will call next(nil) to pass the request to next non-error-middleware 
