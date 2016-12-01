@@ -1,9 +1,10 @@
 package static
 
 import (
-	"lu"
 	"strings"
 	"testing"
+
+	"github.com/vincentLiuxiang/lu"
 
 	"os"
 
@@ -58,7 +59,7 @@ func Test_Method(t *testing.T) {
 
 	postFallThroughMw = false
 	postFallThroughErr = true
-	code, body, _ = fasthttp.Get(nil, "http://localhost:3000/test/dist")
+	code, _, _ = fasthttp.Get(nil, "http://localhost:3000/test/dist")
 	if code == 200 && postFallThroughMw && !postFallThroughErr {
 		t.Log("OK")
 	} else {
