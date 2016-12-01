@@ -7,6 +7,7 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
+// DefaultFS the defalut config of fasthttp.FS
 var DefaultFS = &fasthttp.FS{
 	Compress:        true,
 	IndexNames:      []string{"index.html"},
@@ -14,12 +15,7 @@ var DefaultFS = &fasthttp.FS{
 	AcceptByteRange: true,
 }
 
-// fs is a value which references to a *fasthttp.FS pointer.
-// The reason why New accepts a fasthttp.FS value but not a *fasthttp.FS pointer
-// is that after we called New() and return a lu Middleware, we don't
-// hope anyone can change any property of fs(fasthttp.FS).
-// However, if New accepts a *fasthttp.FS pointer, we can change properties
-// of fasthttp.FS even after we called New().
+// New accepts fs which is a *fasthttp.FS pointer.
 //
 // if the http request method is not 'GET' or 'HEAD', the static will call next(nil)
 //
@@ -27,7 +23,7 @@ var DefaultFS = &fasthttp.FS{
 // the static will call next(nil)
 //
 // or, fasthttp.FS will handle the request file or the IndexNames file in the request directory
-func New(fs fasthttp.FS) func(ctx *fasthttp.RequestCtx, next func(error)) {
+func New(fs *fasthttp.FS) func(ctx *fasthttp.RequestCtx, next func(error)) {
 	staticHandler := fs.NewRequestHandler()
 	return func(ctx *fasthttp.RequestCtx, next func(error)) {
 		m := string(ctx.Method())

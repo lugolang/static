@@ -26,7 +26,7 @@ func Test_Method(t *testing.T) {
 	fi.Close()
 	app := lu.New()
 	fs := DefaultFS
-	Static := New(*fs)
+	Static := New(fs)
 	app.Use("/", Static)
 
 	postFallThroughMw := false
@@ -50,7 +50,7 @@ func Test_Method(t *testing.T) {
 
 	postFallThroughMw = false
 	postFallThroughErr = true
-	code, body, _ = fasthttp.Get(nil, "http://localhost:3000/test/xxx")
+	code, _, _ = fasthttp.Get(nil, "http://localhost:3000/test/xxx")
 	if code == 200 && postFallThroughMw && !postFallThroughErr {
 		t.Log("OK")
 	} else {
@@ -99,7 +99,7 @@ func Test_FallThrough1(t *testing.T) {
 
 	app := lu.New()
 	fs := DefaultFS
-	Static := New(*fs)
+	Static := New(fs)
 	app.Use("/", Static)
 
 	var postFallThroughMw, postFallThroughErr bool
@@ -168,7 +168,7 @@ func Test_FallThrough2(t *testing.T) {
 	fi.Close()
 	app := lu.New()
 	fs := DefaultFS
-	Static := New(*fs)
+	Static := New(fs)
 	app.Use("/", Static)
 
 	var postFallThroughMw, postFallThroughErr bool
@@ -219,7 +219,7 @@ func Test_FallThrough3(t *testing.T) {
 	app := lu.New()
 	fs := DefaultFS
 	fs.IndexNames = nil
-	Static := New(*fs)
+	Static := New(fs)
 	app.Use("/", Static)
 
 	var postFallThroughMw, postFallThroughErr bool
