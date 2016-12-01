@@ -10,7 +10,7 @@ import (
 	
 	"github.com/valyala/fasthttp"
 	"github.com/vincentLiuxiang/lu"
-  "github.com/lugolang/static"
+ 	"github.com/lugolang/static"
 )
 
 func main() {
